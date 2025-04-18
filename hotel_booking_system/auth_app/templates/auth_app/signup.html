@@ -1,0 +1,177 @@
+<!-- templates/auth_app/signup.html -->
+{% extends 'base.html' %}
+
+{% block content %}
+
+<style>
+    body {
+        background: url('https://media.istockphoto.com/id/153006184/photo/maldives-villa-piles-on-water.jpg?s=612x612&w=0&k=20&c=YEwre6THY_VD_yIfHOAIBB_j-tIMYBNjMWDm5SXHIOQ=') no-repeat center center fixed;
+        background-size: cover;
+        background-position: center;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    @keyframes bodyFadeIn {
+        from {
+            opacity: 0;
+        }
+        to {
+            opacity: 1;
+        }
+    }
+
+    .glass-box {
+        max-width: 500px;
+        margin: 80px auto;
+        padding: 30px;
+        border-radius: 20px;
+        background: rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(15px);
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.25);
+        color: #fff;
+        border: 1px solid rgba(255, 255, 255, 0.3);
+    }
+
+
+    @keyframes fadeInUp {
+        from {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    .glass-box h3 {
+        text-align: center;
+        margin-bottom: 25px;
+        color: #ffffff;
+    }
+
+    .form-label, .form-control {
+        color: #fff;
+    }
+
+    .form-control {
+    background-color: #eaf5f7 !important;
+    border: none;
+    border-radius: 6px;
+    padding: 10px;
+    color: #000 !important;
+    font-size: 16px;
+    margin-bottom: 15px;
+}
+
+.form-control::placeholder {
+    color: rgba(0, 0, 0, 0.5);
+}
+
+select.form-control {
+    background-color: #eaf5f7  !important;
+    color: #000 !important;
+}
+
+label {
+    color: #fff;
+    font-weight: 500;
+    margin-bottom: 5px;
+    display: inline-block;
+}
+
+    .form-control:focus {
+        background-color: rgba(255, 255, 255, 0.3);
+        border-color: #ffffff;
+        box-shadow: 0 0 8px #fff;
+        transition: all 0.3s ease-in-out;
+    }
+
+    .btn-glass {
+        background-color: #0077b6;
+        border: none;
+        padding: 10px 15px;
+        border-radius: 8px;
+        color: white;
+        font-weight: bold;
+        width: 100%;
+        margin-top: 10px;
+        transition: transform 0.2s ease;
+    }
+
+
+    .btn-glass:hover {
+        background-color: #023e8a;
+        transform: scale(1.05);
+    }
+
+    .glass-box a {
+        color: #ade8f4;
+        text-decoration: none;
+    }
+
+
+
+    .glass-box a:hover {
+        text-decoration: underline;
+    }
+
+    .alert {
+        margin-top: 10px;
+        text-align: center;
+    }
+</style>
+
+<div class="glass-box">
+<h2>Sign Up</h2>
+<form method="POST">
+    {% csrf_token %}
+ 
+    {% if messages %}
+        <div class="alert alert-danger">
+            {% for message in messages %}
+                <p>{{ message }}</p>
+            {% endfor %}
+        </div>
+    {% endif %}
+    
+    <div class="form-group">
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="username" class="form-control" required>
+    </div>
+
+    <div class="form-group">
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" class="form-control" required>
+    </div>
+
+    <div class="form-group">
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" class="form-control" required>
+    </div>
+
+    <div class="form-group">
+        <label for="confirm_password">Confirm Password:</label>
+        <input type="password" id="confirm_password" name="confirm_password" class="form-control" required>
+    </div>
+
+    <div class="form-group">
+        <label for="role">Role:</label>
+        <select name="role" id="role" class="form-control" required>
+            <option value="user">User</option>
+            <option value="admin">Admin</option>
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label for="age">Age:</label>
+        <input type="number" id="age" name="age" class="form-control" min="18" required>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Create Account</button>
+</form>
+
+<p>Already have an account? <a href="{% url 'login' %}">Login</a></p>
+
+</div>
+{% endblock %}

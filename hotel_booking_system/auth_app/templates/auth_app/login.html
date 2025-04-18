@@ -1,0 +1,105 @@
+{% extends 'base.html' %}
+{% block content %}
+<style>
+    body {
+        background: url('https://media.istockphoto.com/id/153006184/photo/maldives-villa-piles-on-water.jpg?s=612x612&w=0&k=20&c=YEwre6THY_VD_yIfHOAIBB_j-tIMYBNjMWDm5SXHIOQ=') no-repeat center center fixed;
+        background-size: cover;
+        background-position: center;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    .glass-box {
+        max-width: 500px;
+        margin: 80px auto;
+        padding: 30px;
+        border-radius: 20px;
+        background: rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(15px);
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.25);
+        color: #fff;
+        border: 1px solid rgba(255, 255, 255, 0.3);
+    }
+
+    .glass-box h3 {
+        text-align: center;
+        margin-bottom: 25px;
+        color: #ffffff;
+    }
+
+    .form-label, .form-control {
+        color: #fff;
+    }
+
+    .form-control {
+        background-color: rgba(255, 255, 255, 0.2);
+        border: 1px solid rgba(255, 255, 255, 0.3);
+        color: #fff;
+    }
+
+    .form-control::placeholder {
+        color: rgba(255, 255, 255, 0.7);
+    }
+
+    .form-control:focus {
+        background-color: rgba(255, 255, 255, 0.3);
+        border-color: #ffffff;
+        box-shadow: 0 0 8px #fff;
+    }
+
+    .btn-glass {
+        background-color: #00b4d8;
+        border: none;
+        width: 100%;
+    }
+
+    .btn-glass:hover {
+        background-color: #0077b6;
+    }
+
+    .glass-box a {
+        color: #ade8f4;
+        text-decoration: none;
+    }
+
+    .glass-box a:hover {
+        text-decoration: underline;
+    }
+
+    .alert {
+        margin-top: 10px;
+        text-align: center;
+    }
+</style>
+
+<div class="glass-box">
+    <h3>Login to Your Account</h3>
+
+    {% if messages %}
+        {% for message in messages %}
+            <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+                {{ message }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        {% endfor %}
+    {% endif %}
+
+    <form method="POST">
+        {% csrf_token %}
+        <div class="mb-3">
+            <label class="form-label">Username</label>
+            <input type="text" class="form-control" name="username" placeholder="Enter your username" required>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Password</label>
+            <input type="password" class="form-control" name="password" placeholder="Enter your password" required>
+        </div>
+
+        <button type="submit" class="btn btn-glass btn-primary">Login</button>
+    </form>
+
+    <p class="text-center mt-3">
+        Don't have an account? <a href="{% url 'signup' %}">Sign Up here</a>
+    </p>
+</div>
+{% endblock %}

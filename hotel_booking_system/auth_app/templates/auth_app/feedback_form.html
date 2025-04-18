@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container mt-5">
+  <h2>Before you go...</h2>
+  <p>How was your experience with our website?</p>
+  <form method="post">
+    {% csrf_token %}
+    
+    <label for="rating">How would you rate your experience? (optional):</label>
+    <select name="rating" id="rating" class="form-control mb-3">
+      <option value="">Select Rating (Optional)</option>
+      <option value="5">Excellent - 5</option>
+      <option value="4">Very Good - 4</option>
+      <option value="3">Good - 3</option>
+      <option value="2">Fair - 2</option>
+      <option value="1">Poor - 1</option>
+    </select>
+  
+    <label for="comment">Your Feedback (optional):</label>
+    <textarea name="comment" id="comment" rows="4" class="form-control mb-3"></textarea>
+  
+    <button type="submit" class="btn btn-primary">Skip & Logout</button>
+  </form>
+</div>
+{% endblock %}
